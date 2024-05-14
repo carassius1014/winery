@@ -70,7 +70,12 @@ import Barbies.Constraints
 import Barbies.TH
 import Control.Applicative
 import Control.Exception
+#if MIN_VERSION_base(4,18,0)
+import Control.Monad
+import Control.Monad.Fix
+#else
 import Control.Monad.Reader
+#endif
 import qualified Data.ByteString as B
 import qualified Data.ByteString.FastBuilder as BB
 import qualified Data.ByteString.Lazy as BL
@@ -116,7 +121,11 @@ import Unsafe.Coerce
 import GHC.Float (castWord32ToFloat, castWord64ToDouble)
 import GHC.Natural
 import GHC.Generics
+#if MIN_VERSION_base(4,18,0)
+import GHC.TypeLits hiding (SChar)
+#else
 import GHC.TypeLits
+#endif
 
 -- | Serialisable datatype
 --
